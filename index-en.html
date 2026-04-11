@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emotional Film Presets — by Tahel Shenhav</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f9f5ef;
+  --warm: #fdfaf6;
+  --gold: #c9a96e;
+  --gold-light: #e8d5b0;
+  --dark: #2a2118;
+  --text: #3d3128;
+  --muted: #8c7b6b;
+  --border: #e8ddd0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://raw.githubusercontent.com/shenhavtahel/presets/main/hero.jpg') center/cover no-repeat;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+.hero-bg.loaded { transform: scale(1); }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(42,33,24,0.92) 0%,
+    rgba(42,33,24,0.4) 40%,
+    rgba(42,33,24,0.1) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 60px 80px;
+  max-width: 700px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1.2s ease 0.3s forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(42px, 7vw, 80px);
+  line-height: 1.05;
+  color: #fdfaf6;
+  margin-bottom: 24px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: rgba(253,250,246,0.65);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--dark);
+  text-decoration: none;
+  padding: 14px 36px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+.btn-outline {
+  border: 1px solid rgba(253,250,246,0.4);
+  color: rgba(253,250,246,0.8);
+  text-decoration: none;
+  padding: 14px 36px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  right: 60px;
+  writing-mode: vertical-rl;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(253,250,246,0.3);
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 100px 60px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--dark);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.section-title em { font-style: italic; }
+
+.gold-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 40px;
+}
+
+/* ─── STORY ─── */
+.story {
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 500px;
+}
+
+.story-text {
+  padding: 100px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-text .section-title { color: var(--warm); }
+
+.story-text p {
+  font-size: 15px;
+  color: rgba(253,250,246,0.6);
+  line-height: 2;
+  max-width: 440px;
+}
+
+.story-text p + p { margin-top: 20px; }
+
+.story-img {
+  background: url('https://raw.githubusercontent.com/shenhavtahel/presets/main/story.jpg') center/cover;
+  min-height: 400px;
+}
+
+/* ─── BEFORE/AFTER ─── */
+.ba-section { background: var(--warm); }
+
+.ba-intro { max-width: 600px; margin-bottom: 60px; }
+
+.ba-intro p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2px;
+}
+
+.ba-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ba-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ba-item:hover img { transform: scale(1.02); }
+
+.ba-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(42,33,24,0.7));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ba-label-before {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(200,185,165,0.8);
+  text-transform: uppercase;
+}
+
+.ba-label-after {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* ─── PRESETS LIST ─── */
+.presets-section { background: var(--cream); }
+
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+.preset-item {
+  background: var(--warm);
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.preset-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--gold);
+  min-width: 24px;
+}
+
+.preset-name {
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+/* ─── PACKAGES ─── */
+.packages-section {
+  background: var(--dark);
+  text-align: center;
+}
+
+.packages-section .section-title { color: var(--warm); }
+.packages-section .section-eyebrow { display: block; }
+.packages-section .gold-rule { margin: 0 auto 40px; }
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.package-card {
+  background: rgba(253,250,246,0.04);
+  border: 1px solid rgba(201,169,110,0.2);
+  padding: 50px 40px;
+  text-align: left;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.package-card:hover { border-color: rgba(201,169,110,0.5); }
+
+.package-card.featured {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.06);
+}
+
+.package-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  font-weight: 500;
+}
+
+.package-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--warm);
+  margin-bottom: 8px;
+}
+
+.package-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--gold);
+  margin-bottom: 32px;
+  line-height: 1;
+}
+
+.package-price span {
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  vertical-align: super;
+}
+
+.package-features {
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.package-features li {
+  font-size: 13px;
+  color: rgba(253,250,246,0.6);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.package-features li::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 8px;
+  flex-shrink: 0;
+}
+
+.package-features li.highlight {
+  color: var(--gold-light);
+}
+
+.btn-package {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.btn-package-outline {
+  border: 1px solid rgba(201,169,110,0.4);
+  color: var(--gold);
+}
+
+.btn-package-outline:hover {
+  background: rgba(201,169,110,0.1);
+}
+
+.btn-package-filled {
+  background: var(--gold);
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.btn-package-filled:hover {
+  background: var(--gold-light);
+}
+
+/* ─── ABOUT ─── */
+.about-section {
+  background: var(--warm);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 2;
+  margin-bottom: 20px;
+}
+
+.about-sig {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+  margin-top: 32px;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.stat {
+  background: var(--warm);
+  padding: 32px;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── FAQ ─── */
+.faq-section { background: var(--cream); }
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 60px;
+  max-width: 900px;
+}
+
+.faq-item {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-q {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.faq-a {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  background: var(--dark);
+  text-align: center;
+  padding: 120px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(201,169,110,0.12) 0%, transparent 60%);
+}
+
+.final-cta .section-title {
+  color: var(--warm);
+  position: relative;
+  z-index: 1;
+}
+
+.final-cta p {
+  font-size: 15px;
+  color: rgba(253,250,246,0.5);
+  max-width: 480px;
+  margin: 0 auto 48px;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+.final-cta .hero-cta {
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(253,250,246,0.3);
+}
+
+footer a {
+  color: var(--gold);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+footer a:hover { opacity: 1; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  section { padding: 70px 24px; }
+  .hero-content { padding: 0 24px 60px; }
+  .scroll-hint { display: none; }
+  .story { grid-template-columns: 1fr; }
+  .story-img { min-height: 300px; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .packages-grid { grid-template-columns: 1fr; }
+  .about-section { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Lightroom Presets · by Tahel Shenhav</p>
+    <h1>Emotional<br><em>Film</em></h1>
+    <p class="hero-sub">13 presets built for photographers who want their images to feel real, warm, and alive — with a timeless film look that works across every lighting condition.</p>
+    <div class="hero-cta">
+      <a href="https://tahel.gumroad.com/l/emotional-film-full" class="btn-primary">Get Full Collection — $67</a>
+      <a href="#packages" class="btn-outline">See All Options</a>
+    </div>
+  </div>
+  <p class="scroll-hint">Scroll</p>
+</section>
+
+<!-- STORY -->
+<div class="story">
+  <div class="story-text">
+    <p class="section-eyebrow">The philosophy</p>
+    <h2 class="section-title">Photography is<br>a <em>true story</em></h2>
+    <div class="gold-rule"></div>
+    <p>Every image carries an emotion. These presets were built not to mask reality, but to enhance it — drawing out the warmth, depth, and feeling that already exist in the moment.</p>
+    <p>Soft tones. Natural skin. Light that breathes. This is the Emotional Film look.</p>
+  </div>
+  <div class="story-img" style="background-image: url('https://raw.githubusercontent.com/shenhavtahel/presets/main/story.jpg')"></div>
+</div>
+
+<!-- BEFORE/AFTER -->
+<section class="ba-section">
+  <div class="ba-intro">
+    <p class="section-eyebrow">Before & After</p>
+    <h2 class="section-title">See the<br><em>difference</em></h2>
+    <div class="gold-rule"></div>
+    <p>Each preset is designed to work beautifully across different lighting conditions, skin tones, and camera systems — with minimal adjustments needed.</p>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-item">
+      <img src="https://raw.githubusercontent.com/shenhavtahel/presets/main/ba_01.jpg" alt="Before After" loading="lazy">
+      <div class="ba-overlay">
+        <span class="ba-label-before">Before</span>
+        <span class="ba-label-after">After ✦</span>
+      </div>
+    </div>
+    <div class="ba-item">
+      <img src="https://raw.githubusercontent.com/shenhavtahel/presets/main/ba_02.jpg" alt="Before After" loading="lazy">
+      <div class="ba-overlay">
+        <span class="ba-label-before">Before</span>
+        <span class="ba-label-after">After ✦</span>
+      </div>
+    </div>
+    <div class="ba-item">
+      <img src="https://raw.githubusercontent.com/shenhavtahel/presets/main/ba_03.jpg" alt="Before After" loading="lazy">
+      <div class="ba-overlay">
+        <span class="ba-label-before">Before</span>
+        <span class="ba-label-after">After ✦</span>
+      </div>
+    </div>
+    <div class="ba-item">
+      <img src="https://raw.githubusercontent.com/shenhavtahel/presets/main/ba_04.jpg" alt="Before After" loading="lazy">
+      <div class="ba-overlay">
+        <span class="ba-label-before">Before</span>
+        <span class="ba-label-after">After ✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESETS LIST -->
+<section class="presets-section">
+  <p class="section-eyebrow">What's inside</p>
+  <h2 class="section-title">13 <em>presets</em><br>for every moment</h2>
+  <div class="gold-rule"></div>
+  <div class="presets-grid">
+    <div class="preset-item"><span class="preset-num">01</span><span class="preset-name">Golden Hour</span></div>
+    <div class="preset-item"><span class="preset-num">02</span><span class="preset-name">Natural Light</span></div>
+    <div class="preset-item"><span class="preset-num">03</span><span class="preset-name">Blue Hour</span></div>
+    <div class="preset-item"><span class="preset-num">04</span><span class="preset-name">Overcast</span></div>
+    <div class="preset-item"><span class="preset-num">05</span><span class="preset-name">Midday</span></div>
+    <div class="preset-item"><span class="preset-num">06</span><span class="preset-name">Indoor Warm</span></div>
+    <div class="preset-item"><span class="preset-num">07</span><span class="preset-name">Indoor Bright</span></div>
+    <div class="preset-item"><span class="preset-num">08</span><span class="preset-name">Indoor Moody</span></div>
+    <div class="preset-item"><span class="preset-num">09</span><span class="preset-name">Film Classic</span></div>
+    <div class="preset-item"><span class="preset-num">10</span><span class="preset-name">Clean and Soft</span></div>
+    <div class="preset-item"><span class="preset-num">11</span><span class="preset-name">Desert Earth</span></div>
+    <div class="preset-item"><span class="preset-num">12</span><span class="preset-name">Faded Vintage</span></div>
+    <div class="preset-item"><span class="preset-num">13</span><span class="preset-name">BW Vintage Film</span></div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section" id="packages">
+  <p class="section-eyebrow">Choose your collection</p>
+  <h2 class="section-title">Two ways to<br><em>start editing</em></h2>
+  <div class="gold-rule"></div>
+
+  <div class="packages-grid">
+    <div class="package-card">
+      <p class="package-name">Basic</p>
+      <p class="package-price"><span>$</span>47</p>
+      <ul class="package-features">
+        <li>13 Emotional Film presets (.XMP)</li>
+        <li>Lightroom Classic & Mobile</li>
+        <li>Works with all cameras</li>
+        <li>RAW & JPEG compatible</li>
+        <li>Step-by-step installation guide</li>
+        <li>Instant download</li>
+      </ul>
+      <a href="https://tahel.gumroad.com/l/emotional-film-basic" class="btn-package btn-package-outline">Get Basic — $47</a>
+    </div>
+
+    <div class="package-card featured">
+      <div class="package-badge">Most Popular</div>
+      <p class="package-name">Full Collection</p>
+      <p class="package-price"><span>$</span>67</p>
+      <ul class="package-features">
+        <li>13 Emotional Film presets (.XMP)</li>
+        <li class="highlight">✦ Morning Haze — exclusive bonus preset</li>
+        <li class="highlight">✦ Built-in AI skin & eye masks</li>
+        <li class="highlight">✦ 13 Magic AI Tools (Subject, Background, Sky)</li>
+        <li>Lightroom Classic v12+ & Mobile</li>
+        <li>Works with all cameras · RAW & JPEG</li>
+        <li>Step-by-step installation guide</li>
+        <li>Instant download</li>
+      </ul>
+      <a href="https://tahel.gumroad.com/l/emotional-film-full" class="btn-package btn-package-filled">Get Full Collection — $67</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-text">
+    <p class="section-eyebrow">About Tahel</p>
+    <h2 class="section-title">Photography<br>from the <em>heart</em></h2>
+    <div class="gold-rule"></div>
+    <p>I'm a family, maternity, and newborn photographer based in Israel. I call my style "True Story" — photography that captures the real, raw, emotional truth of a moment.</p>
+    <p>I built these presets over years of shooting in real conditions — golden hour, harsh midday, dim indoor light — because I needed a look that worked everywhere without losing its soul.</p>
+    <p>These are the exact presets I use on every session.</p>
+    <p class="about-sig">— Tahel Shenhav</p>
+  </div>
+  <div class="about-stats">
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Film Presets</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Magic AI Tools</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">All</div>
+      <div class="stat-label">Cameras Supported</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Lifetime Access</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <p class="section-eyebrow">Questions</p>
+  <h2 class="section-title">Everything you<br>need to <em>know</em></h2>
+  <div class="gold-rule"></div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <p class="faq-q">Which Lightroom version do I need?</p>
+      <p class="faq-a">The presets work with Lightroom Classic (any version) and Lightroom Mobile (free app). Magic AI Tools require Lightroom Classic v12+ or the latest mobile version.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do they work with my camera brand?</p>
+      <p class="faq-a">Yes — built and tested on Canon, but compatible with Sony, Nikon, Fujifilm, and all major cameras. You may need minor white balance or exposure tweaks depending on your system.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">RAW or JPEG?</p>
+      <p class="faq-a">Both work. RAW files give the richest, most accurate results since the preset can access the full tonal range. JPEG works too, but with slightly less flexibility.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What are the Magic AI Tools?</p>
+      <p class="faq-a">Lightroom AI-powered local adjustments that target specific elements — subject, background, or sky — without affecting the rest of the image. Available in the Full Collection only.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do I install the presets?</p>
+      <p class="faq-a">After purchase, you'll receive a link to the full installation guide with step-by-step instructions for both Lightroom Classic and Mobile.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What is Morning Haze?</p>
+      <p class="faq-a">An exclusive bonus preset included only in the Full Collection. It has built-in AI masks that automatically soften skin and brighten eyes — a preset and a retouch in one click.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <p class="section-eyebrow">Ready to start?</p>
+  <h2 class="section-title">Your images.<br><em>Their true story.</em></h2>
+  <p>Download instantly. Install in minutes. Edit with feeling.</p>
+  <div class="hero-cta">
+    <a href="https://tahel.gumroad.com/l/emotional-film-full" class="btn-primary">Get Full Collection — $67</a>
+    <a href="https://tahel.gumroad.com/l/emotional-film-basic" class="btn-outline">Basic — $47</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Tahel Shenhav Photography · All rights reserved</span>
+  <a href="https://instagram.com/tahel.shenhav.photography">@tahel.shenhav.photography</a>
+</footer>
+
+<script>
+// Hero parallax
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero-bg');
+  if (hero) {
+    hero.style.transform = `scale(1.05) translateY(${window.scrollY * 0.3}px)`;
+  }
+});
+
+// Fade in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.ba-item, .preset-item, .package-card, .faq-item, .stat').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
